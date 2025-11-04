@@ -45,8 +45,6 @@ void G_LED(void)
 {
     for (;;) {
 
-		k_msleep(4000);
-
         k_mutex_lock(&led_mutex, K_FOREVER);
 
         LOG_INF("Semáforo Verde");
@@ -54,9 +52,10 @@ void G_LED(void)
         gpio_pin_set_dt(&ledR, 0);
         gpio_pin_set_dt(&ledB, 0);
 
+        k_msleep(3000);
+
         k_mutex_unlock(&led_mutex);
 
-		k_msleep(2000);
     }
 }
 
@@ -66,8 +65,6 @@ void G_LED(void)
 void R_LED(void)
 {
     for (;;) {
-	
-		k_msleep(2000);
 
 		k_mutex_lock(&led_mutex, K_FOREVER);
 
@@ -76,9 +73,32 @@ void R_LED(void)
         gpio_pin_set_dt(&ledG, 0);
         gpio_pin_set_dt(&ledB, 0);
 
+        k_msleep(4000);
+
         k_mutex_unlock(&led_mutex);
 
         k_msleep(4000);
+
+    }
+}
+
+void Y_LED(void)
+{
+    for (;;) {
+	
+
+		k_mutex_lock(&led_mutex, K_FOREVER);
+
+        LOG_INF("Semáforo Amarelo");
+        gpio_pin_set_dt(&ledR, 1);
+        gpio_pin_set_dt(&ledG, 1);
+        gpio_pin_set_dt(&ledB, 0);
+
+        k_msleep(1000);
+
+        k_mutex_unlock(&led_mutex);
+
+        k_msleep(3000);
 
     }
 }
@@ -87,7 +107,8 @@ void R_LED(void)
 // DEFINIÇÃO DE THREADS
 // ============================================================================
 K_THREAD_DEFINE(Green_LedT, 512, G_LED, NULL, NULL, NULL, 7, 0, 0);
-K_THREAD_DEFINE(Red_LedT,   512, R_LED, NULL, NULL, NULL, 6, 0, 0);
+K_THREAD_DEFINE(Red_LedT,   512, R_LED, NULL, NULL, NULL, 5, 0, 0);
+K_THREAD_DEFINE(Yellow_LedT,   512, Y_LED, NULL, NULL, NULL, 6, 0, 0);
 
 // ============================================================================
 // MAIN

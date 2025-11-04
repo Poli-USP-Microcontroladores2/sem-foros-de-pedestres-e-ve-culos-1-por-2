@@ -20,6 +20,9 @@ K_SEM_DEFINE(led_sem, 0, 1);
 #define LED1_NODE DT_ALIAS(led1)
 #define LED2_NODE DT_ALIAS(led2)
 
+// Bool do Modo Noturno
+bool nightMode = true;
+
 #if DT_NODE_HAS_STATUS(LED0_NODE, okay)
 static const struct gpio_dt_spec ledG = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
 #else
@@ -44,7 +47,7 @@ static const struct gpio_dt_spec ledR = GPIO_DT_SPEC_GET(LED2_NODE, gpios);
 void G_LED(void)
 {
     for (;;) {
-
+        if (nightMode == false){
         k_mutex_lock(&led_mutex, K_FOREVER);
 
         LOG_INF("Semáforo Verde");
@@ -55,7 +58,10 @@ void G_LED(void)
         k_msleep(3000);
 
         k_mutex_unlock(&led_mutex);
-
+                                }
+        else{
+            k_sleep(K_FOREVER);
+        }
     }
 }
 
@@ -65,7 +71,7 @@ void G_LED(void)
 void R_LED(void)
 {
     for (;;) {
-
+    if (nightMode == false){
 		k_mutex_lock(&led_mutex, K_FOREVER);
 
         LOG_INF("Semáforo Vermelho");
@@ -79,13 +85,17 @@ void R_LED(void)
 
         k_msleep(4000);
 
+                            }
+        else{
+            k_sleep(K_FOREVER);
+        }
     }
 }
 
 void Y_LED(void)
 {
     for (;;) {
-	
+         if (nightMode == false){
 
 		k_mutex_lock(&led_mutex, K_FOREVER);
 
@@ -99,7 +109,12 @@ void Y_LED(void)
         k_mutex_unlock(&led_mutex);
 
         k_msleep(3000);
-
+         }
+         else{
+        gpio_pin_toggle_dt(&ledR);
+        gpio_pin_toggle_dt(&ledG);
+        k_msleep(1000);
+         }
     }
 }
 

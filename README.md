@@ -1,8 +1,8 @@
 # PSI-Microcontroladores2-Aula07
-Atividade: Semáforos de Pedestres e Veículos
-Nome: Bruno Souza Mora
-NUSP: 16906121
-Link do Repositório: https://github.com/Poli-USP-Microcontroladores2/sem-foros-de-pedestres-e-ve-culos-1-por-2.git
+- Atividade: Semáforos de Pedestres e Veículos
+- Nome: Bruno Souza Mora
+- NUSP: 16906121
+- Link do Repositório: https://github.com/Poli-USP-Microcontroladores2/sem-foros-de-pedestres-e-ve-culos-1-por-2.git
 
 # Fase de Desenvolvimento
 ## Requisitos

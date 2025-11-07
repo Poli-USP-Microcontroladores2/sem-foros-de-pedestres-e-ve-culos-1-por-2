@@ -63,7 +63,7 @@ https://github.com/user-attachments/assets/b895cf9a-711c-4ae9-b64e-05b891ee9640
 
 
 - Tempo de intervalo do Toggle do LED vermelho (Pedestres):1s (Pisca a cada 2s - 1s aceso e 1s apagado)
-  <img width="446" height="107" alt="image" src="https://github.com/user-attachments/assets/79b6ebc0-5794-455f-97fc-52d4e333c6c3" />
+- - <img width="446" height="107" alt="image" src="https://github.com/user-attachments/assets/79b6ebc0-5794-455f-97fc-52d4e333c6c3" />
 
 ## Teste de Unidade - Botão de Travessia de Pedestre:
 
